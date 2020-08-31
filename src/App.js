@@ -4,13 +4,15 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
 import Dashboard from "./components/Dashboard";
-import Layout from "./components/Layout/Layout";
+import Layout from "./components/layout/Layout";
 import Login from "./components/accounts/Login";
 import Register from "./components/accounts/Register";
 import ChangePassword from "./components/accounts/ChangePassword";
 import ResetPassword from "./components/accounts/ResetPassword";
 import Department from "./components/department/Department";
 import LeaveType from "./components/leaveType/LeaveType";
+import Employee from "./components/employee/Employee";
+import LeaveRequest from "./components/leaveRequest/LeaveRequest";
 
 import PrivateRoute from "./components/common/PrivateRoute";
 
@@ -68,8 +70,10 @@ function App () {
                     path="/change-password"
                     component={ChangePassword}
                   />
-                  <Route path="/department" component={Department} />
-                  <Route path="/leave-type" component={LeaveType} />
+                  <PrivateRoute path="/department" component={Department} />
+                  <PrivateRoute path="/leave-type" component={LeaveType} />
+                  <PrivateRoute path="/employee" component={Employee} />
+                  <PrivateRoute path="/leave-request" component={LeaveRequest} />
                   <Route component={NoMatch} />{" "}
                 </Switch>{" "}
               </Layout>{" "}

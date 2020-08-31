@@ -112,3 +112,7 @@ svg {
 #green {
     border-left: solid 5px rgb(0, 255, 128);
 }
+
+hr{
+    color: #3fa6f0;
+}

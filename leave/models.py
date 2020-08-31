@@ -32,12 +32,27 @@ class Employee(models.Model):
         return self.name
 
 
+class CustomDateTimeField(models.DateTimeField):
+    def value_to_string(self, obj):
+        val = self.value_from_object(obj)
+        if val:
+            val.replace(millisecond=0, second=0, microsecond=0)
+            # val.replace(microsecond=0)
+            return val.isoformat()
+        return ''
+
+# class ConvertingDateTimeField(models.DateTimeField):
+
+#     def get_prep_value(self, value):
+#         return str(datetime.strptime(value, FORMAT_STRING))
+
+
 class Leave_request(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     leave = models.ForeignKey(Leave_type, on_delete=models.CASCADE)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
-    description = models.TextField(max_length=300)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    description = models.TextField(max_length=300, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

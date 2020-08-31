@@ -20,7 +20,7 @@ class LeaveTypeViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 class EmployeeViewSet(viewsets.ModelViewSet):
-    queryset = Employee.objects.all().order_by('-id')
+    queryset = Employee.objects.all().order_by('-emp_id')
     serializer_class = EmployeeSerializer
     permission_classes = [permissions.IsAuthenticated]
 

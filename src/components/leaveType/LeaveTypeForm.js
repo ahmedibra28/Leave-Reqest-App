@@ -10,14 +10,7 @@ function LeaveTypeForm({handleChange, handleSubmit, values, errors}) {
 
             <div className="input-group">
               <span className="input-group-text" id="basic-addon1">
-                <svg
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="mail w-6 h-6"
-                >
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                </svg>
+              <svg viewBox="0 0 20 20" fill="currentColor" className="device-tablet w-6 h-6"><path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm4 14a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" /></svg>
               </span>
               <input
                 name="name"

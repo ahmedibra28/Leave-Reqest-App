@@ -30,6 +30,14 @@ class Alerts extends Component {
       message.deleteLeaveType && alert.success(message.deleteLeaveType);
       message.addLeaveType && alert.success(message.addLeaveType);
       message.updateLeaveType && alert.success(message.updateLeaveType);
+
+      message.deleteEmployee && alert.success(message.deleteEmployee);
+      message.addEmployee && alert.success(message.addEmployee);
+      message.updateEmployee && alert.success(message.updateEmployee);
+
+      message.deleteLeaveRequest && alert.success(message.deleteLeaveRequest);
+      message.addLeaveRequest && alert.success(message.addLeaveRequest);
+      message.updateLeaveRequest && alert.success(message.updateLeaveRequest);
     }
 
   }

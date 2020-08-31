@@ -1,6 +1,6 @@
 # Django & React Boilerplate
 
-Here is a complete Django and React boilerplate.
+Here is a complete Django and React leave request app.
 
 It containers:
 ```
