@@ -31,6 +31,20 @@ nav img {
     border-radius: 50%;
 }
 
+.dropdown-item {
+    color: #ffffff
+}
+
+.dropdown-item:hover {
+    color: #63B3ED
+}
+
+.dropdown-menu {
+    background: #63B3ED;
+    border: none
+
+}
+
 svg {
     width: 20px;
     height: auto;
@@ -97,6 +111,10 @@ svg {
     color:  #3fa6f0;
     text-transform: uppercase;
     font-size: 26px;
+}
+
+.text-muted, a{
+    color: #3fa6f0;
 }
 
 .login-flex-helper {

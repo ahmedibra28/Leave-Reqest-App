@@ -161,7 +161,8 @@ export const logout = () => (dispatch, getState) => {
 
 // Setup config with token - helper function
 export const tokenConfig = (getState) => {
-  const token = getState().auth.token;
+  // const token = getState().auth.token;
+  const token = localStorage.getItem("token")
   const config = {
     headers: {
       "Content-Type": "application/json",

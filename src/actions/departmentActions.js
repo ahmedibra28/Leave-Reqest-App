@@ -12,6 +12,7 @@ import {
   
   
   export const getDepartments = () => (dispatch, getState) => {
+    console.log(tokenConfig(getState))
     axios
       .get(
         `${url}api/department/`,
