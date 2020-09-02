@@ -3,10 +3,14 @@ import {
     ADD_LEAVE_REQUEST,
     DELETE_LEAVE_REQUEST,
     UPDATE_LEAVE_REQUEST,
+    GET_LEAVE_REQUEST_FILTER,
+    GET_LEAVE_REQUEST_FILTER_NOTIF,
   } from "../actions/types";
   
   const initialState = {
     leave_requests: [],
+    leave_request_filter: [],
+    leave_request_filter_notif: [],
   };
   
   export default function (state = initialState, action) {
@@ -35,6 +39,16 @@ import {
           leave_requests: state.leave_requests.filter(
             (transfusion) => transfusion.id !== action.payload
           ),
+        };
+      case GET_LEAVE_REQUEST_FILTER:
+        return {
+          ...state,
+          leave_request_filter: action.payload,
+        };
+      case GET_LEAVE_REQUEST_FILTER_NOTIF:
+        return {
+          ...state,
+          leave_request_filter_notif: action.payload,
         };
       default:
         return state;

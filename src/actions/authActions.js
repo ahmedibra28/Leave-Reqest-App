@@ -14,7 +14,9 @@ import {
 import { createMessage, returnErrors } from "./messageActions";
 import axios from "axios";
 
-const url = `http://127.0.0.1:8000/`;
+// const url = `http://127.0.0.1:8000/`;
+const url = `http://192.168.0.155:1111/`;
+
 
 // CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {

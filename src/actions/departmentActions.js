@@ -8,11 +8,12 @@ import {
   import axios from "axios";
   import { tokenConfig } from "./authActions";
   
-  const url = `http://127.0.0.1:8000/`;
+// const url = `http://127.0.0.1:8000/`;
+const url = `http://192.168.0.155:1111/`;
+
   
   
   export const getDepartments = () => (dispatch, getState) => {
-    console.log(tokenConfig(getState))
     axios
       .get(
         `${url}api/department/`,
@@ -30,7 +31,6 @@ import {
   };
   
   export const addDepartment = (department) => (dispatch, getState) => {
-    console.log(department)
     axios
       .post(`${url}api/department/`, department, tokenConfig(getState))
       .then((res) => {

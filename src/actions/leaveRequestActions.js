@@ -3,12 +3,16 @@ import {
     ADD_LEAVE_REQUEST,
     DELETE_LEAVE_REQUEST,
     UPDATE_LEAVE_REQUEST,
+    GET_LEAVE_REQUEST_FILTER,
+    GET_LEAVE_REQUEST_FILTER_NOTIF,
   } from "./types";
   import { createMessage, returnErrors } from "./messageActions";
   import axios from "axios";
   import { tokenConfig } from "./authActions";
   
-  const url = `http://127.0.0.1:8000/`;
+// const url = `http://127.0.0.1:8000/`;
+const url = `http://192.168.0.155:1111/`;
+
   
   
   export const getLeaveRequests = () => (dispatch, getState) => {
@@ -17,10 +21,10 @@ import {
         `${url}api/leave-request/`,
         tokenConfig(getState)
       )
-      .then((leave_tequests) => {
+      .then((leave_requests) => {
         dispatch({
           type: GET_LEAVE_REQUESTS,
-          payload: leave_tequests.data,
+          payload: leave_requests.data,
         });
       })
       .catch((err) =>
@@ -90,3 +94,44 @@ import {
       );
   };
   
+
+
+
+
+  // Filter Action
+  export const getLeaveRequestFilter = (employee, leave, start_date, end_date) => (dispatch, getState) => {
+    axios
+      .get(
+        `${url}api/leave-request-filter/?employee=${employee}&leave=${leave}&start_date__lte=${end_date}&start_date__gte=${start_date}&end_date__gte=`,
+        tokenConfig(getState)
+      )
+      .then((leave_requests) => {
+        dispatch({
+          type: GET_LEAVE_REQUEST_FILTER,
+          payload: leave_requests.data,
+        });
+      })
+      .catch((err) =>
+        dispatch(returnErrors(err.response.data, err.response.status))
+      );
+  };
+
+
+
+    // Notifications
+    export const getLeaveRequestFilterNotif = (current_date) => (dispatch, getState) => {
+      axios
+        .get(
+          `${url}api/leave-request-filter/?employee=&leave=&start_date__lte=&start_date__gte=&end_date__gte=${current_date}`,
+          tokenConfig(getState)
+        )
+        .then((leave_requests) => {
+          dispatch({
+            type: GET_LEAVE_REQUEST_FILTER_NOTIF,
+            payload: leave_requests.data,
+          });
+        })
+        .catch((err) =>
+          dispatch(returnErrors(err.response.data, err.response.status))
+        );
+    };

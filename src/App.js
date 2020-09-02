@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
 
-import Dashboard from "./components/Dashboard";
+// import Dashboard from "./components/Dashboard";
 import Layout from "./components/layout/Layout";
 import Login from "./components/accounts/Login";
 import Register from "./components/accounts/Register";
@@ -13,6 +13,9 @@ import Department from "./components/department/Department";
 import LeaveType from "./components/leaveType/LeaveType";
 import Employee from "./components/employee/Employee";
 import LeaveRequest from "./components/leaveRequest/LeaveRequest";
+import Report from "./components/report/Report";
+import NotifReport from "./components/notification/NotifReport";
+
 
 import PrivateRoute from "./components/common/PrivateRoute";
 
@@ -56,7 +59,7 @@ function App () {
               <Alerts />
               <Layout>
                 <Switch>
-                  <PrivateRoute exact path="/" component={Dashboard} />{" "}
+                  {/* <PrivateRoute exact path="/" component={Dashboard} />{" "} */}
                   <Route exact path="/login" component={Login} />{" "}
                   <Route
                     exact
@@ -74,6 +77,8 @@ function App () {
                   <PrivateRoute path="/leave-type" component={LeaveType} />
                   <PrivateRoute path="/employee" component={Employee} />
                   <PrivateRoute path="/leave-request" component={LeaveRequest} />
+                  <PrivateRoute path="/report" component={Report} />
+                  <PrivateRoute path="/" component={NotifReport} />
                   <Route component={NoMatch} />{" "}
                 </Switch>{" "}
               </Layout>{" "}

@@ -7,6 +7,10 @@ from .serializers import (
     LeaveRequestSerializer
 )
 
+from django_filters import rest_framework as filters
+
+
+
 # Create your views here.
 
 class DepartmentViewSet(viewsets.ModelViewSet):
@@ -24,7 +28,27 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     serializer_class = EmployeeSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+
 class LeaveRequestViewSet(viewsets.ModelViewSet):
     queryset = Leave_request.objects.all().order_by('-id')
     serializer_class = LeaveRequestSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    
+class LeaveRequestFilter(filters.FilterSet):
+    class Meta:
+        model = Leave_request
+        fields = {
+            'employee': ['exact'],
+            'leave': ['exact'],
+            'start_date': ['lte', 'gte'],
+            'end_date': ['gte'],
+            # 'start_date': ['date__lte', 'date__gte']   # Use if you are filter DateTImeFiled()
+        }
+
+class LeaveRequestFilter(viewsets.ReadOnlyModelViewSet):
+    queryset = Leave_request.objects.all().order_by('-id')
+    serializer_class = LeaveRequestSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    filterset_class = LeaveRequestFilter
+    
