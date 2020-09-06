@@ -10,20 +10,17 @@ import {
   CHANGE_PASSWORD_FAILED,
   CHANGE_PASSWORD_SUCCESS,
   RESET_PASSWORD_SUCCESS,
+  URL,
 } from "../actions/types";
 import { createMessage, returnErrors } from "./messageActions";
 import axios from "axios";
-
-// const url = `http://127.0.0.1:8000/`;
-const url = `http://192.168.0.155:1111/`;
-
 
 // CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   axios
-    .get(`${url}rest-auth/user/`, tokenConfig(getState))
+    .get(`${URL}rest-auth/user/`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: USER_LOADED,
@@ -36,7 +33,7 @@ export const loadUser = () => (dispatch, getState) => {
         type: AUTH_ERROR,
       });
     });
-}; 
+};
 
 // LOGIN USER
 export const login = (values) => (dispatch) => {
@@ -47,13 +44,11 @@ export const login = (values) => (dispatch) => {
   };
 
   axios
-    .post(`${url}rest-auth/login/`, values, config)
+    .post(`${URL}rest-auth/login/`, values, config)
     .then((res) => {
-
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
-
       });
     })
     .catch((err) => {
@@ -73,13 +68,13 @@ export const register = (values) => (dispatch) => {
   };
 
   axios
-    .post(`${url}rest-auth/registration/`, values, config)
+    .post(`${URL}rest-auth/registration/`, values, config)
     .then((res) => {
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
-      dispatch(createMessage(res.data))
+      dispatch(createMessage(res.data));
     })
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
@@ -90,13 +85,10 @@ export const register = (values) => (dispatch) => {
 };
 
 // CHANGE PASSWORD
-export const change_password = (values) => (
-  dispatch,
-  getState
-) => {
+export const change_password = (values) => (dispatch, getState) => {
   // const body = JSON.stringify({ old_password, new_password });
   axios
-    .post(`${url}rest-auth/password/change/`, values, tokenConfig(getState))
+    .post(`${URL}rest-auth/password/change/`, values, tokenConfig(getState))
     .then((res) => {
       dispatch(
         createMessage({
@@ -118,16 +110,15 @@ export const change_password = (values) => (
 };
 
 // RESET PASSWORD
-export const reset_password = ( email ) => (dispatch) => {
+export const reset_password = (email) => (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
 
-
   axios
-    .post(`${url}rest-auth/password/reset/`, email, config)
+    .post(`${URL}rest-auth/password/reset/`, email, config)
     .then((res) => {
       dispatch(
         createMessage({
@@ -144,15 +135,13 @@ export const reset_password = ( email ) => (dispatch) => {
     });
 };
 
-
 // LOGOUT USER
 export const logout = () => (dispatch, getState) => {
   axios
-    .post(`${url}rest-auth/logout/`, null, tokenConfig(getState))
+    .post(`${URL}rest-auth/logout/`, null, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: LOGOUT_SUCCESS,
-        
       });
       // dispatch(createMessage(res.data))
     })
@@ -164,7 +153,7 @@ export const logout = () => (dispatch, getState) => {
 // Setup config with token - helper function
 export const tokenConfig = (getState) => {
   // const token = getState().auth.token;
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
   const config = {
     headers: {
       "Content-Type": "application/json",
