@@ -15,7 +15,7 @@ import Employee from "./components/employee/Employee";
 import LeaveRequest from "./components/leaveRequest/LeaveRequest";
 import Report from "./components/report/Report";
 import NotifReport from "./components/notification/NotifReport";
-
+import Resign from "./components/resign/Resign";
 
 import PrivateRoute from "./components/common/PrivateRoute";
 
@@ -46,47 +46,43 @@ const NoMatch = ({ location }) => (
   </div>
 );
 
-function App () {
+function App() {
   useEffect(() => {
-    store.dispatch(loadUser())
-  }, [])
+    store.dispatch(loadUser());
+  }, []);
 
-    return (
-      <Provider store={store}>
-        <AlertProvider template={AlertTemplate} {...alertOptions}>
-          <div className="App">
-            <Router>
-              <Alerts />
-              <Layout>
-                <Switch>
-                  {/* <PrivateRoute exact path="/" component={Dashboard} />{" "} */}
-                  <Route exact path="/login" component={Login} />{" "}
-                  <Route
-                    exact
-                    path="/reset-password"
-                    component={ResetPassword}
-                  />{" "}
-
-                  <Route exact path="/register" component={Register} />{" "}
-                  <PrivateRoute
-                    exact
-                    path="/change-password"
-                    component={ChangePassword}
-                  />
-                  <PrivateRoute path="/department" component={Department} />
-                  <PrivateRoute path="/leave-type" component={LeaveType} />
-                  <PrivateRoute path="/employee" component={Employee} />
-                  <PrivateRoute path="/leave-request" component={LeaveRequest} />
-                  <PrivateRoute path="/report" component={Report} />
-                  <PrivateRoute path="/" component={NotifReport} />
-                  <Route component={NoMatch} />{" "}
-                </Switch>{" "}
-              </Layout>{" "}
-            </Router>{" "}
-          </div>{" "}
-        </AlertProvider>{" "}
-      </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <AlertProvider template={AlertTemplate} {...alertOptions}>
+        <div className="App">
+          <Router>
+            <Alerts />
+            <Layout>
+              <Switch>
+                {/* <PrivateRoute exact path="/" component={Dashboard} />{" "} */}
+                <Route exact path="/login" component={Login} />{" "}
+                <Route exact path="/reset-password" component={ResetPassword} />{" "}
+                <Route exact path="/register" component={Register} />{" "}
+                <PrivateRoute
+                  exact
+                  path="/change-password"
+                  component={ChangePassword}
+                />
+                <PrivateRoute path="/resign" component={Resign} />
+                <PrivateRoute path="/department" component={Department} />
+                <PrivateRoute path="/leave-type" component={LeaveType} />
+                <PrivateRoute path="/employee" component={Employee} />
+                <PrivateRoute path="/leave-request" component={LeaveRequest} />
+                <PrivateRoute path="/report" component={Report} />
+                <PrivateRoute path="/" component={NotifReport} />
+                <Route component={NoMatch} />{" "}
+              </Switch>{" "}
+            </Layout>{" "}
+          </Router>{" "}
+        </div>{" "}
+      </AlertProvider>{" "}
+    </Provider>
+  );
   // }
 }
 

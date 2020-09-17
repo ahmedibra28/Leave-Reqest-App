@@ -1,6 +1,6 @@
 import React from "react";
 
-function EmployeeForm({
+function ResignForm({
   handleChange,
   handleSubmit,
   values,
@@ -39,13 +39,11 @@ function EmployeeForm({
             </option>
             {employees &&
               employees.map((employee) => {
-                if (employee.active === true) {
-                  return (
-                    <option key={employee.id} value={employee.id}>
-                      {employee.emp_id}
-                    </option>
-                  );
-                }
+                return (
+                  <option key={employee.id} value={employee.id}>
+                    {employee.emp_id}
+                  </option>
+                );
               })}
           </select>
         </div>
@@ -70,55 +68,24 @@ function EmployeeForm({
             </svg>
           </span>
           <select
-            name="leave"
+            name="resign_type"
             onChange={handleChange}
-            value={values.leave}
+            value={values.resign_type}
             className="form-control py-2"
           >
             <option value="" disabled>
-              Leave Type...
+              Resign Type...
             </option>
-            {leave_types &&
-              leave_types.map((leave_type) => {
-                return (
-                  <option key={leave_type.id} value={leave_type.id}>
-                    {leave_type.name}
-                  </option>
-                );
-              })}
+            <option value="Quit">Quit</option>
+            <option value="Dismissed">Dismissed</option>
+            <option value="Resign">Resign</option>
+            <option value="Transfer">Transfer</option>
           </select>
         </div>
 
-        {errors.leave && (
-          <div className="form-text text-danger text-right">{errors.leave}</div>
-        )}
-
-        <div className="input-group">
-          <span className="input-group-text" id="basic-addon1">
-            <svg
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="calendar w-6 h-6"
-            >
-              <path
-                fillRule="evenodd"
-                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </span>
-          <input
-            name="start_date"
-            onChange={handleChange}
-            type="date"
-            value={values.start_date}
-            className="form-control py-2"
-            placeholder="Enter start date"
-          />
-        </div>
-        {errors.start_date && (
+        {errors.resign_type && (
           <div className="form-text text-danger text-right">
-            {errors.start_date}
+            {errors.resign_type}
           </div>
         )}
 
@@ -137,17 +104,17 @@ function EmployeeForm({
             </svg>
           </span>
           <input
-            name="end_date"
+            name="resign_date"
             onChange={handleChange}
             type="date"
-            value={values.end_date}
+            value={values.resign_date}
             className="form-control py-2"
-            placeholder="Enter end date"
+            placeholder="Enter resign date"
           />
         </div>
-        {errors.end_date && (
+        {errors.resign_date && (
           <div className="form-text text-danger text-right">
-            {errors.end_date}
+            {errors.resign_date}
           </div>
         )}
 
@@ -168,12 +135,12 @@ function EmployeeForm({
           <textarea
             rows="5"
             cols="30"
-            name="description"
+            name="resign_reason"
             onChange={handleChange}
             type="date"
-            value={values.description}
+            value={values.resign_reason}
             className="form-control py-2"
-            placeholder="Enter description"
+            placeholder="Enter resign reason"
           />
         </div>
 
@@ -190,4 +157,4 @@ function EmployeeForm({
   );
 }
 
-export default EmployeeForm;
+export default ResignForm;

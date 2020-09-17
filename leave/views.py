@@ -1,10 +1,11 @@
 from rest_framework import viewsets, permissions
-from .models import Department, Leave_type, Employee, Leave_request
+from .models import Department, Leave_type, Employee, Leave_request, Resign
 from .serializers import (
     DepartmentSerializer, 
     LeaveTypeSerializer, 
     EmployeeSerializer, 
-    LeaveRequestSerializer
+    LeaveRequestSerializer,
+    ResignSerializer
 )
 
 from django_filters import rest_framework as filters
@@ -51,4 +52,11 @@ class LeaveRequestFilter(viewsets.ReadOnlyModelViewSet):
     serializer_class = LeaveRequestSerializer
     permission_classes = [permissions.IsAuthenticated]
     filterset_class = LeaveRequestFilter
+
+
+
+class ResignViewSet(viewsets.ModelViewSet):
+    queryset = Resign.objects.all().order_by('-id')
+    serializer_class = ResignSerializer
+    permission_classes = [permissions.IsAuthenticated]
     

@@ -6,8 +6,10 @@ import departmentReducers from "./departmentReducers";
 import leaveTypeReducers from "./leaveTypeReducers";
 import employeeReducers from "./employeeReducers";
 import leaveRequestReducers from "./leaveRequestReducers";
+import resignReducers from "./resignReducers";
 
 export default combineReducers({
+  resigns: resignReducers,
   departments: departmentReducers,
   leave_requests: leaveRequestReducers,
   employees: employeeReducers,

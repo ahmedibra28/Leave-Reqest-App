@@ -17,6 +17,7 @@ class Alerts extends Component {
       error.msg.old_password && alert.error(error.msg.old_password);
       error.msg.new_password && alert.error(error.msg.new_password);
       error.msg.email && alert.error(error.msg.email);
+      error.msg.emp_id && alert.error(error.msg.emp_id);
     }
     if (message !== prevProps.message) {
       message.changePassword && alert.success(message.changePassword);
@@ -38,8 +39,11 @@ class Alerts extends Component {
       message.deleteLeaveRequest && alert.success(message.deleteLeaveRequest);
       message.addLeaveRequest && alert.success(message.addLeaveRequest);
       message.updateLeaveRequest && alert.success(message.updateLeaveRequest);
-    }
 
+      message.deleteResign && alert.success(message.deleteResign);
+      message.addResign && alert.success(message.addResign);
+      message.updateResign && alert.success(message.updateResign);
+    }
   }
 
   render() {

@@ -1,4 +1,4 @@
-export const URL = "http://192.168.8.250:1111/";
+export const URL = "http://192.10.11.100:1111/";
 
 export const USER_LOADING = "USER_LOADING";
 export const USER_LOADED = "USER_LOADED";
@@ -40,3 +40,8 @@ export const UPDATE_LEAVE_REQUEST = "UPDATE_LEAVE_REQUEST";
 
 export const GET_LEAVE_REQUEST_FILTER = "GET_LEAVE_REQUEST_FILTER";
 export const GET_LEAVE_REQUEST_FILTER_NOTIF = "GET_LEAVE_REQUEST_FILTER_NOTIF";
+
+export const GET_RESIGNS = "GET_RESIGNS";
+export const ADD_RESIGN = "ADD_RESIGN";
+export const DELETE_RESIGN = "DELETE_RESIGN";
+export const UPDATE_RESIGN = "UPDATE_RESIGN";

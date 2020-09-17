@@ -5,8 +5,8 @@ from .views import (
     LeaveTypeViewSet,
     EmployeeViewSet,
     LeaveRequestViewSet,
-
-    LeaveRequestFilter
+    LeaveRequestFilter,
+    ResignViewSet
 )
 
 router = routers.DefaultRouter()
@@ -15,4 +15,5 @@ router.register('leave-type', LeaveTypeViewSet)
 router.register('employee', EmployeeViewSet)
 router.register('leave-request', LeaveRequestViewSet)
 router.register('leave-request-filter', LeaveRequestFilter)
+router.register('resign', ResignViewSet)
 urlpatterns = router.urls

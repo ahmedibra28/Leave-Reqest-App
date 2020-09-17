@@ -20,31 +20,17 @@ class Leave_type(models.Model):
 
 
 class Employee(models.Model):
-    emp_id = models.CharField(max_length=10)
+    emp_id = models.CharField(max_length=10, unique=True)
     name = models.CharField(max_length=50)
     gender = models.CharField(max_length=8)
     mobile = models.CharField(max_length=15)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
-
-
-class CustomDateTimeField(models.DateTimeField):
-    def value_to_string(self, obj):
-        val = self.value_from_object(obj)
-        if val:
-            val.replace(millisecond=0, second=0, microsecond=0)
-            # val.replace(microsecond=0)
-            return val.isoformat()
-        return ''
-
-# class ConvertingDateTimeField(models.DateTimeField):
-
-#     def get_prep_value(self, value):
-#         return str(datetime.strptime(value, FORMAT_STRING))
 
 
 class Leave_request(models.Model):
@@ -59,3 +45,15 @@ class Leave_request(models.Model):
     def __str__(self):
         return self.employee.name
 
+
+class Resign(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    resign_date = models.DateField()
+    resign_type = models.CharField(max_length=50)
+    resign_reason = models.CharField(max_length=300, blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.employee.name
